@@ -1,0 +1,87 @@
+<form [formGroup]="form" autocomplete="off">
+<nb-card>
+        <nb-tabset>
+            <nb-tab tabTitle="General">
+            <div class="col-sm-12 form-group">
+                <label> Title </label>
+                <input formControlName="title" type="text" placeholder="Full Name" class="form-control"/>
+                <small class="form-text error" >
+                    Something wrong guys.
+                </small>
+            </div>
+            <div class=" col-sm-12 form-group">
+               <label> Description</label>
+               <input [hidden]="true" formControlName="textEditor" type="text" placeholder="Text-editor"/>
+               <ckeditor (change)="onEditorChange($event)" [config]="config"></ckeditor>
+            </div>
+            <div class="col-sm-12 form-group">
+                <div class="form-control">
+                    <input class="col-sm-4" (click)="uploadImage($event)" type="file" placeholder="Text-editor"/>
+                    <input class="col-sm-8 no-border" value="{{ urlValue }}" type="text" placeholder="/url link of image"/>
+                </div>
+            </div>
+            <div class="col-sm-12 form-group">
+                <label> Date Added </label>
+                <input formControlName="date" type="date" placeholder="Full Name" class="form-control"/>
+                <small class="form-text error" >
+                    Something wrong guys.
+                </small>
+            </div>
+        </nb-tab>
+            <nb-tab tabTitle="Category">
+                <div class="col-sm-12 form-group">
+                    <label> Category </label>
+                    <input formControlName="title" type="text" placeholder="Full Name" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+            </nb-tab>
+            <nb-tab tabTitle="Image">
+                <div class="col-sm-12 form-group">
+                    <label> Main Image </label>
+                    <input formControlName="image" type="text" placeholder="Full Name" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Additional Images </label>
+                    <input formControlName="images" type="text" placeholder="Full Name" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+            </nb-tab>
+            <nb-tab tabTitle="SEO">
+                <div class="col-sm-12 form-group">
+                    <label> SEO Title </label>
+                    <input formControlName="seoTitle" type="text" placeholder="Full Name" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> SEO Description </label>
+                    <input formControlName="seoDescription" type="text" placeholder="Full Name" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> SEO Image </label>
+                    <input formControlName="seoImage" type="file" placeholder="Full Name" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+            </nb-tab>
+        </nb-tabset>
+</nb-card>
+    <div class="form-group row">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-secondary float-right">Back</button>
+        </div>
+    </div>
+</form>

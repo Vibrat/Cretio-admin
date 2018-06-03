@@ -1,0 +1,54 @@
+<nb-card>
+    <nb-card-header>
+     Porfolio Create/ Edit
+    </nb-card-header>
+    <nb-card-body>
+        <form [formGroup]="form">
+            <div class="col-sm-12 form-group">
+                <label> Title </label>
+                <input formControlName="name" type="text" placeholder="Full Name" class="form-control"/>
+                <small class="form-text error" >
+                            Something wrong guys.
+                </small>
+             </div>
+            <div class="col-sm-12 form-group">
+                 <label> Image </label>
+                 <input formControlName="image" type="File" class="form-control"/>
+                 <small class="form-text error" >
+                            Something wrong guys.
+                 </small>
+             </div>
+            <div class="col-sm-12 form-group">
+                 <div class="image-render">Image will be shown here</div>
+             </div>
+            <div class="col-sm-12 form-group">
+                  <label> Order </label>
+                  <input formControlName="order" type="text" placeholder="Full Name" class="form-control"/>
+                  <small class="form-text error" >
+                            Something wrong guys.
+                  </small>
+            </div>
+            <div class="col-sm-12 form-group custom-group">
+                   <label> Activation </label>
+                   <div class="demo-radio">
+                       <label class="custom-control custom-radio col-sm-12">
+                                <input formControlName="active"  value="false" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Inactive</span>
+                       </label>
+                       <label class="custom-control custom-radio col-sm-12">
+                                <input formControlName="active" type="radio" value="true" class="custom-control-input" [checked]="true">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Active</span>
+                       </label>
+                    </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-lg-12 form-group">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-secondary float-right">Back</button>
+                </div>
+            </div>
+        </form>
+    </nb-card-body>
+</nb-card>

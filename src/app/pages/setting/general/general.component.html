@@ -1,0 +1,173 @@
+<form [formGroup]="form" (submit)="onSubmit()"  autocomplete="off">
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <nb-card size="small">
+        <nb-tabset>
+            <nb-tab tabTitle="General">
+                  <div class="col-sm-12 form-group">
+                    <label> Company Name </label>
+                    <input formControlName="name" type="text" placeholder="Full Name" class="form-control"/>
+                    <small class="form-text error" >
+                      Something wrong guys.
+                    </small>
+                  </div>
+                  <div class="col-sm-12 form-group">
+                     <label> Address </label>
+                     <input formControlName="address" type="text" placeholder="" class="form-control"/>
+                     <small class="form-text error" > Something wrong guys.</small>
+                  </div>
+                  <div class="col-sm-12 form-group">
+                     <label> Phone </label>
+                     <input formControlName="phone" type="text" placeholder="" class="form-control"/>
+                     <small class="form-text error" > Something wrong guys.</small>
+                  </div>
+                    <div class="col-sm-12 form-group">
+                        <label> Fax </label>
+                        <input formControlName="fax" type="text" placeholder="" class="form-control"/>
+                        <small class="form-text error" > Something wrong guys.</small>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label> Email </label>
+                        <input formControlName="email" type="text" placeholder="" class="form-control"/>
+                        <small class="form-text error" > Something wrong guys.</small>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label> Opening time </label>
+                        <input formControlName="time" type="text" placeholder="" class="form-control"/>
+                        <small class="form-text error" > Something wrong guys.</small>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label> Logo </label>
+                        <input formControlName="logo" type="file" (change)="onChangeImage($event)" placeholder="" class="form-control"/>
+                        <small class="form-text error" > Something wrong guys.</small>
+                    </div>
+                    <div class="col-sm-12 form-group">
+                        <label> Fabicon </label>
+                        <input formControlName="fabicon" type="file" (change)="onChangeImage($event)" class="form-control"/>
+                        <small class="form-text error" > Something wrong guys.</small>
+                    </div>
+                    <div class="col-sm-12 form-group custom-group">
+                        <label> Mode </label>
+                        <div class="demo-radio">
+                            <label class="custom-control custom-radio col-sm-12">
+                                <input formControlName="maintainance"  value="false" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Maintainance</span>
+                            </label>
+                            <label class="custom-control custom-radio col-sm-12">
+                                <input formControlName="maintainance"  type="radio" value="true" class="custom-control-input" [checked]="true">
+                                <span class="custom-control-indicator"></span>
+                                <span class="custom-control-description">Active</span>
+                            </label>
+                        </div>
+                    </div>
+            </nb-tab>
+            <nb-tab tabTitle="Social Media">
+                <div class="col-sm-12 form-group">
+                    <label> Facebook </label>
+                    <input formControlName="facebook" type="text" placeholder="/lam.nguyen.125" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Instagram </label>
+                    <input formControlName="instagram" type="text" placeholder="/lam.nguyen.125" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Twitter </label>
+                    <input formControlName="twitter" type="text" placeholder="/lam.nguyen.125" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Zalo </label>
+                    <input formControlName="zalo" type="text" placeholder="/lam.nguyen.125" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+            </nb-tab>
+            <nb-tab tabTitle="SEO">
+                <div class="col-sm-12 form-group">
+                    <label> Title </label>
+                    <input formControlName="seoTitle" type="text" placeholder="title" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Description </label>
+                    <input formControlName="seoDes" type="text" placeholder="description" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Image </label>
+                    <input formControlName="seoImage" type="file" (change)="onChangeImage($event)"  class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+            </nb-tab>
+            <nb-tab tabTitle="Email Config">
+                <div class="col-sm-12 form-group">
+                    <label> Engine </label>
+                    <input formControlName="method" type="text" placeholder="SMTP / MAIL" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Hostname </label>
+                    <input formControlName="hostname" type="text" placeholder="smtp.gmail.com" class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Username </label>
+                    <input formControlName="username" type="text" placeholder="lam.nguyen@gmail.com"  class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Password </label>
+                    <input formControlName="password" type="password" placeholder=""  class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> Port </label>
+                    <input formControlName="port" type="text" placeholder="587"  class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <label> SetTimeOut</label>
+                    <input formControlName="setTimeOut" type="text" placeholder="1000"  class="form-control"/>
+                    <small class="form-text error" >
+                        Something wrong guys.
+                    </small>
+                </div>
+            </nb-tab>
+        </nb-tabset>
+    </nb-card>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12 col-lg-12 form-group">
+    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-secondary float-right">Back</button>
+  </div>
+</div>
+</form>
