@@ -25,6 +25,10 @@ const routes: Routes = [{
     loadChildren: './sliders/sliders.module#SlidersModule',
   },
   {
+    path: 'partners',
+    loadChildren: './partners/partners.module#PartnersModule',
+  },
+  {
     path: 'porfolio',
     loadChildren: './porfolio/porfolio.module#PorfolioModule',
   },

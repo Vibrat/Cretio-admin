@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
-import { Settings, Data } from './data/data-articles';
+import { Settings, SourceData } from './data/data-articles';
 import { Router } from '@angular/router';
+import { ApiService } from '../../../api.service';
 
 @Component({
   selector: 'articles',
@@ -12,9 +13,25 @@ import { Router } from '@angular/router';
 export class ArticlesComponent implements OnInit {
   public source: LocalDataSource = new LocalDataSource();
   public settings = Settings;
-  public data = Data;
+  public data: SourceData[] =[];
 
-  constructor(private router: Router) { this.source.load(this.data); }
+  constructor(private router: Router, private api: ApiService) {
+      this.api.getData('https://hilapy-be.herokuapp.com/posts?offset=1&limit=3').subscribe((data) => {
+          let arrayData = data.data;
+          for ( let i = 0; i < arrayData.length; i++ ) {
+              this.data.push({
+                  id: arrayData[i]._id,
+                  title: arrayData[i].title,
+                  image: '<img src="' + arrayData[i].image.url + '" class="img-fluid custom-img">',
+                  activation: arrayData[i].hidden,
+                  order: arrayData[i].__v
+              });
+          }
+          this.source.load(this.data);
+      }, (error) => {
+          this.api.redirectLogin();
+      });
+  }
 
   ngOnInit() {
   }
@@ -28,14 +45,22 @@ export class ArticlesComponent implements OnInit {
   }
 
   onEdit(event) {
-      window.console.log('on Edit');
+      /**
+       * function handle when Edit a value in a row
+       */
+
+      this.router.navigateByUrl('pages/posts/edit/' + event.data.id, {skipLocationChange: false});
   }
 
   onDelete(event) {
-      window.console.log('oke dookie delete');
-      this.source.remove(event.data);
-      /**
-       * Put your HttpClient and remove here
-       */
+      if (window.confirm('Are you sure you want to delete?')) {
+          this.api.deleteData('https://hilapy-be.herokuapp.com/posts/' + event.data.id + '?token=' + this.api.getToken()).subscribe((response)=> {
+              if(response.meta.code == 200) {
+                  this.source.remove(event.data);
+              }
+          });
+      } else {
+          event.confirm.reject();
+      }
   }
 }

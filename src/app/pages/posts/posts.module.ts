@@ -6,6 +6,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { ArticleComponent } from './article/article.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CKEditorModule } from 'ng2-ckeditor';
+import { NotificationModule } from '../../@theme/components/notification/notification.module';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { CKEditorModule } from 'ng2-ckeditor';
     PostsRouterModule,
     Ng2SmartTableModule,
     CKEditorModule,
+    NotificationModule
   ],
   declarations: [ArticlesComponent, ArticleComponent ],
 })

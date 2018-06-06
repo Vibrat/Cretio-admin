@@ -36,10 +36,7 @@
               "node_modules/nebular-icons/scss/nebular-icons.scss",
               "node_modules/pace-js/templates/pace-theme-flash.tmpl.css",
               "src/app/@theme/styles/styles.scss",
-              "node_modules/quill/dist/quill.snow.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "node_modules/codemirror/lib/codemirror.css",
-              "node_modules/summernote/dist/summernote.css"
+              "src/app/@theme/styles/custom.scss"
             ],
             "scripts": [
               "node_modules/pace-js/pace.min.js",

@@ -32,6 +32,15 @@ export const MENU_ITEMS: NbMenuItem[] = [
     link: '/pages/posts',
   },
   {
+    title: 'Partners',
+    icon: 'nb-arrow-retweet',
+    link: '/pages/partners',
+    children: [
+        { title: 'General', link: 'partners' },
+        { title: 'Create', link:  'partners/new' }
+    ]
+  },
+  {
     title: 'Porfolio',
     icon: 'nb-lightbulb',
     link: '/pages/porfolio',

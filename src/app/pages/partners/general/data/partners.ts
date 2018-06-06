@@ -1,9 +1,8 @@
 export interface SourceData {
-    id: number;
-    title: string;
+    id: string;
+    name: string;
     image: string;
-    activation: string;
-    order: string;
+    url: string;
 }
 
 export const Settings = {
@@ -27,47 +26,14 @@ export const Settings = {
         id: {
             title: 'ID', type: 'string'
         },
-        title: {
+        name: {
             title: 'Title', type: 'string',
         },
         image: {
             title: 'Image', type: 'html',
         },
-        activation: {
+        url: {
             title: 'Activation', type: 'string',
-        },
-        order: {
-            title: 'Order', type: 'string',
         },
     },
 };
-
-export const Entry = {
-    title: 'Porfolios',
-};
-
-export const Source = [{
-    id: 1,
-    title: 'Mark',
-    image: 'Otto',
-    activation: '@mdo',
-    order: 'mdo@gmail.com',
-}, {
-    id: 2,
-    title: 'Mark',
-    image: 'Otto',
-    activation: '@mdo',
-    order: 'mdo@gmail.com',
-}, {
-    id: 3,
-    title: 'Mark',
-    image: 'Otto',
-    activation: '@mdo',
-    order: 'mdo@gmail.com',
-}, {
-    id: 4,
-    title: 'Mark',
-    image: 'Otto',
-    activation: '@mdo',
-    order: 'mdo@gmail.com',
-}];

@@ -58,11 +58,12 @@ export const NB_CORE_PROVIDERS = [
               defaultMessages: ['Thành công!'],
           },
           logout: {
+              alwaysFail: false,
               endpoint: '/authenticate',
-              method: 'delete',
+              method: 'post',
               redirect: {
                   success: '/auth/login',
-                  failure: null,
+                  failure: '/auth/login',
               },
           },
           register: {
@@ -74,7 +75,7 @@ export const NB_CORE_PROVIDERS = [
               },
               method: 'post',
               redirect: {
-                    success: '/auth/login',
+                    success: '/',
                     failure: null,
               },
           },

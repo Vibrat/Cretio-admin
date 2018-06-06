@@ -1,4 +1,5 @@
-<form [formGroup]="form" autocomplete="off">
+<notification [toaster]="toasterCustom" ></notification>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" autocomplete="off">
 <nb-card>
         <nb-tabset>
             <nb-tab tabTitle="General">
@@ -11,27 +12,24 @@
             </div>
             <div class=" col-sm-12 form-group">
                <label> Description</label>
-               <input [hidden]="true" formControlName="textEditor" type="text" placeholder="Text-editor"/>
-               <ckeditor (change)="onEditorChange($event)" [config]="config"></ckeditor>
+               <ckeditor formControlName="content" (change)="onEditorChange($event)" [config]="config"></ckeditor>
             </div>
             <div class="col-sm-12 form-group">
                 <div class="form-control">
-                    <input class="col-sm-4" (click)="uploadImage($event)" type="file" placeholder="Text-editor"/>
-                    <input class="col-sm-8 no-border" value="{{ urlValue }}" type="text" placeholder="/url link of image"/>
+                    <input class="col-sm-4" (change)="uploadImage($event)" type="file" placeholder="Text-editor"/>
+                    <input *ngIf="urlValue" class="col-sm-8 no-border" value="{{ urlValue }}" type="text" placeholder="/url link of image"/>
                 </div>
             </div>
             <div class="col-sm-12 form-group">
                 <label> Date Added </label>
                 <input formControlName="date" type="date" placeholder="Full Name" class="form-control"/>
-                <small class="form-text error" >
-                    Something wrong guys.
-                </small>
+                <small class="form-text error"> Something wrong guys.</small>
             </div>
         </nb-tab>
             <nb-tab tabTitle="Category">
                 <div class="col-sm-12 form-group">
                     <label> Category </label>
-                    <input formControlName="title" type="text" placeholder="Full Name" class="form-control"/>
+                    <input formControlName="category" type="text" placeholder="Full Name" class="form-control"/>
                     <small class="form-text error" >
                         Something wrong guys.
                     </small>
@@ -40,10 +38,13 @@
             <nb-tab tabTitle="Image">
                 <div class="col-sm-12 form-group">
                     <label> Main Image </label>
-                    <input formControlName="image" type="text" placeholder="Full Name" class="form-control"/>
-                    <small class="form-text error" >
-                        Something wrong guys.
-                    </small>
+                    <input type="file" (change)="uploadMain($event)" class="form-control"/>
+                    <small class="form-text error">Something wrong guys.</small>
+                </div>
+                <div class="col-sm-12 form-group">
+                    <div class="image-render">
+                        <img *ngIf="imagePost" class="img-fluid custom-img" src="{{ imagePost.url }}" />
+                    </div>
                 </div>
                 <div class="col-sm-12 form-group">
                     <label> Additional Images </label>
@@ -54,6 +55,11 @@
                 </div>
             </nb-tab>
             <nb-tab tabTitle="SEO">
+                <div class="col-sm-12 form-group">
+                    <label> SEO Title </label>
+                    <input formControlName="seo" type="text" placeholder="/seo-link-url" class="form-control"/>
+                    <small class="form-text error">Something wrong guys.</small>
+                </div>
                 <div class="col-sm-12 form-group">
                     <label> SEO Title </label>
                     <input formControlName="seoTitle" type="text" placeholder="Full Name" class="form-control"/>
@@ -80,8 +86,8 @@
 </nb-card>
     <div class="form-group row">
         <div class="col-sm-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="submit" class="btn btn-secondary float-right">Back</button>
+            <button type="submit" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+            <button type="submit" (click)="goBack()" class="btn btn-secondary float-right">Back</button>
         </div>
     </div>
 </form>

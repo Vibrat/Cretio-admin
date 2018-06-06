@@ -5,6 +5,7 @@ import { PorfolioRouterModule } from './porfolio-router.module';
 import { IndexComponent } from './index/index.component';
 import { PorfoliosComponent } from './porfolios/porfolios.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { ToasterModule } from 'angular2-toaster';
 
 @NgModule({
   imports: [
@@ -12,6 +13,7 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     PorfolioRouterModule,
     ThemeModule,
     Ng2SmartTableModule,
+    ToasterModule
   ],
   declarations: [IndexComponent, PorfoliosComponent],
 })

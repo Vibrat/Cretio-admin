@@ -9,7 +9,7 @@ export const ckEditorConfig = {
         { name: 'styles', groups: [ 'styles' ] },
         { name: 'colors', groups: [ 'colors' ] },
     ],
-    removeButtons: 'Source,Save,Templates,Find,Replace,Scayt,SelectAll'
+    removeButtons: 'Source,Save,Templates,Find,Replace,Scayt,SelectAll',
 };
 
 
