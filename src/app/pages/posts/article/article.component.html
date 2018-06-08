@@ -12,11 +12,13 @@
             </div>
             <div class=" col-sm-12 form-group">
                <label> Description</label>
-               <ckeditor formControlName="content" (change)="onEditorChange($event)" [config]="config"></ckeditor>
+               <ckeditor formControlName="content" (change)="onEditorChange($event)" [config]="config">
+                   <ckbutton [name]="'imageExplorer'" [command]="'openImageExplorer'" (click)="openImageExplorer($event)" [icon]="'./plugins/upload/icon.png'" [label]="'Upload an image'" [toolbar]="'insert,1'"></ckbutton>
+               </ckeditor>
             </div>
             <div class="col-sm-12 form-group">
                 <div class="form-control">
-                    <input class="col-sm-4" (change)="uploadImage($event)" type="file" placeholder="Text-editor"/>
+                    <input id="fileMain" class="col-sm-4" (change)="uploadImage($event)" type="file" placeholder="Text-editor"/>
                     <input *ngIf="urlValue" class="col-sm-8 no-border" value="{{ urlValue }}" type="text" placeholder="/url link of image"/>
                 </div>
             </div>
@@ -55,31 +57,29 @@
                 </div>
             </nb-tab>
             <nb-tab tabTitle="SEO">
-                <div class="col-sm-12 form-group">
-                    <label> SEO Title </label>
-                    <input formControlName="seo" type="text" placeholder="/seo-link-url" class="form-control"/>
+                <div formArrayName="seos" class="col-sm-12 form-group">
+                    <label>SEO Link</label>
+                    <button (click)="addSeo()"  class="btn-tn float-right seo-button"><span class="icon"><i class="ion-plus-round"></i></span></button>
+                    <button (click)="removeSeo()" class="btn-tn float-right seo-button"><span class="icon ng-star-inserted"><i class="ion-trash-a"></i></span></button>
+                    <div *ngFor="let seo of seos.controls; index as i">
+                    <input formControlName="{{ i }}" type="text" placeholder="/seo-link-url" class="form-control"/>
                     <small class="form-text error">Something wrong guys.</small>
+                    </div>
                 </div>
                 <div class="col-sm-12 form-group">
                     <label> SEO Title </label>
                     <input formControlName="seoTitle" type="text" placeholder="Full Name" class="form-control"/>
-                    <small class="form-text error" >
-                        Something wrong guys.
-                    </small>
+                    <small class="form-text error">Something wrong guys.</small>
                 </div>
                 <div class="col-sm-12 form-group">
                     <label> SEO Description </label>
                     <input formControlName="seoDescription" type="text" placeholder="Full Name" class="form-control"/>
-                    <small class="form-text error" >
-                        Something wrong guys.
-                    </small>
+                    <small class="form-text error">Something wrong guys.</small>
                 </div>
                 <div class="col-sm-12 form-group">
                     <label> SEO Image </label>
                     <input formControlName="seoImage" type="file" placeholder="Full Name" class="form-control"/>
-                    <small class="form-text error" >
-                        Something wrong guys.
-                    </small>
+                    <small class="form-text error" > Something wrong guys. </small>
                 </div>
             </nb-tab>
         </nb-tabset>

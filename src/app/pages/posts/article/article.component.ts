@@ -1,6 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChildren} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray} from '@angular/forms';
 import { ckEditorConfig } from './data/article';
 import { ApiService} from '../../../api.service';
 import { FileUploadService } from '../../file-upload.service';
@@ -39,14 +39,28 @@ export class ArticleComponent implements OnInit {
           'category': new FormControl ( '',  [Validators.required]),
           'image': new FormControl ('', []),
           'images': new FormControl('', []),
-          'seo': new FormControl('', []),
+          'seos': new FormArray([
+              new FormControl('', []),
+          ]),
           'seoTitle': new FormControl('', []),
           'seoDescription': new FormControl('', []),
           'seoImage': new FormControl('', [])
       });
   }
 
-    ngOnInit() {
+  get seos(): FormArray {
+      return this.form.get('seos') as FormArray;
+  }
+
+  addSeo() {
+      this.seos.insert(0, new FormControl());
+  }
+
+  removeSeo() {
+      this.seos.removeAt(0);
+  }
+
+  ngOnInit() {
 
       /**
        * Loading content value from API
@@ -69,6 +83,18 @@ export class ArticleComponent implements OnInit {
        */
       this.api.getData('https://hilapy-be.herokuapp.com/posts/' + this.slug).subscribe((response) => {
           if (response.meta.code == 200) {
+              /**
+               * Create seo links
+               */
+
+              for (let i = 0; i < (response.data.seo.length -1); i++) {
+                  this.seos.push(new FormControl());
+              }
+
+              /**
+               * Setting values for Form
+               */
+
               this.form.patchValue({
                   title: response.data.title,
                   content: response.data.content,
@@ -79,24 +105,38 @@ export class ArticleComponent implements OnInit {
                   seoTitle: '',
                   seoDescription: '',
                   seoImage: '',
-                  seo: response.data.seo,
+                  seos: response.data.seo,
                   hidden: (!response.data.hidden).toString()
               });
 
               /**
-               * Display image post
+               * Display images
                */
+
               this.imagePost = response.data.image;
           }
       });
   }
 
   onSubmit() {
-      this.api.putData('https://hilapy-be.herokuapp.com/posts/' + this.slug + '?token=' + this.api.getToken(), this.form.value)
-          .subscribe((res) => {
-              if (res.meta.code != 200) this.toasterCustom = { type: 'error', title: 'Thông báo', message: 'Có lỗi xảy ra khi cập nhật' };
-              else this.toasterCustom = { type: 'success', title: 'Thông báo', message: 'Cập nhật bài viết thành công' };
-      });
+      if (this.slug == null) {
+          this.api.postData('https://hilapy-be.herokuapp.com/posts' + '?token=' + this.api.getToken(), this.form.value).subscribe((res) => {
+              if (res.meta.code != 200) this.toasterCustom = {
+                  type: 'error', title: 'Thông báo', message: 'Có lỗi xảy ra khi cập nhật'
+              }; else this.toasterCustom = {type: 'success', title: 'Thông báo', message: 'Tạo bài viết thành công'};
+          });
+      } else {
+          this.api.putData('https://hilapy-be.herokuapp.com/posts/' + this.slug + '?token=' + this.api.getToken(), this.form.value)
+              .subscribe((res) => {
+                  if (res.meta.code != 200) this.toasterCustom = {
+                      type: 'error',
+                      title: 'Thông báo',
+                      message: 'Có lỗi xảy ra khi cập nhật'
+                  }; else this.toasterCustom = {type: 'success', title: 'Thông báo', message: 'Cập nhật bài viết thành công'};
+              });
+      }
+
+
   }
 
   onEditorChange(event: string){
@@ -129,6 +169,11 @@ export class ArticleComponent implements OnInit {
           this.imagePost = response.data;
           this.form.patchValue({ image: response.data });
       });
+  }
+
+  openImageExplorer(event): void{
+     let fileMain = document.getElementById('fileMain');
+     fileMain.click();
   }
 
   goBack() {

@@ -14,7 +14,7 @@ export class GeneralComponent implements OnInit {
   private source: LocalDataSource = new LocalDataSource();
 
   constructor( private api: ApiService) {
-      this.api.getData('https://hilapy-be.herokuapp.com/partners?offset=1&limit=3').subscribe((res) => {
+      this.api.getData('https://hilapy-be.herokuapp.com/partners?offset=0').subscribe((res) => {
             if (typeof res == 'undefined') throw new Error('api not exist');
             let arrayData = res.data;
             for ( let i = 0; i < arrayData.length; i++) {

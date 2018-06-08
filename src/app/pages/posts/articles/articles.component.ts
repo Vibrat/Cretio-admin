@@ -16,7 +16,7 @@ export class ArticlesComponent implements OnInit {
   public data: SourceData[] =[];
 
   constructor(private router: Router, private api: ApiService) {
-      this.api.getData('https://hilapy-be.herokuapp.com/posts?offset=1&limit=3').subscribe((data) => {
+      this.api.getData('https://hilapy-be.herokuapp.com/posts?offset=0&limit=10').subscribe((data) => {
           let arrayData = data.data;
           for ( let i = 0; i < arrayData.length; i++ ) {
               this.data.push({
