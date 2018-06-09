@@ -44,4 +44,8 @@ export class ApiService {
   redirectLogin(): void {
       this.router.navigateByUrl('/auth/logout', { skipLocationChange: false });
   }
+
+  infiniteToken() {
+      let token = window.localStorage.getItem('auth_app_token');
+  }
 }

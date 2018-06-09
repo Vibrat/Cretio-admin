@@ -57,11 +57,11 @@
                 </div>
             </nb-tab>
             <nb-tab tabTitle="SEO">
-                <div formArrayName="seos" class="col-sm-12 form-group">
+                <div formArrayName="seo" class="col-sm-12 form-group">
                     <label>SEO Link</label>
                     <button (click)="addSeo()"  class="btn-tn float-right seo-button"><span class="icon"><i class="ion-plus-round"></i></span></button>
                     <button (click)="removeSeo()" class="btn-tn float-right seo-button"><span class="icon ng-star-inserted"><i class="ion-trash-a"></i></span></button>
-                    <div *ngFor="let seo of seos.controls; index as i">
+                    <div *ngFor="let item of seo.controls; index as i">
                     <input formControlName="{{ i }}" type="text" placeholder="/seo-link-url" class="form-control"/>
                     <small class="form-text error">Something wrong guys.</small>
                     </div>

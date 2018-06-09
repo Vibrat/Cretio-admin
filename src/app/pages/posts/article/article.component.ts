@@ -39,7 +39,7 @@ export class ArticleComponent implements OnInit {
           'category': new FormControl ( '',  [Validators.required]),
           'image': new FormControl ('', []),
           'images': new FormControl('', []),
-          'seos': new FormArray([
+          'seo': new FormArray([
               new FormControl('', []),
           ]),
           'seoTitle': new FormControl('', []),
@@ -48,16 +48,16 @@ export class ArticleComponent implements OnInit {
       });
   }
 
-  get seos(): FormArray {
-      return this.form.get('seos') as FormArray;
+  get seo(): FormArray {
+      return this.form.get('seo') as FormArray;
   }
 
   addSeo() {
-      this.seos.insert(0, new FormControl());
+      this.seo.insert(0, new FormControl());
   }
 
   removeSeo() {
-      this.seos.removeAt(0);
+      this.seo.removeAt(0);
   }
 
   ngOnInit() {
@@ -88,7 +88,7 @@ export class ArticleComponent implements OnInit {
                */
 
               for (let i = 0; i < (response.data.seo.length -1); i++) {
-                  this.seos.push(new FormControl());
+                  this.seo.push(new FormControl());
               }
 
               /**
@@ -105,7 +105,7 @@ export class ArticleComponent implements OnInit {
                   seoTitle: '',
                   seoDescription: '',
                   seoImage: '',
-                  seos: response.data.seo,
+                  seo: response.data.seo,
                   hidden: (!response.data.hidden).toString()
               });
 
@@ -171,9 +171,22 @@ export class ArticleComponent implements OnInit {
       });
   }
 
-  openImageExplorer(event): void{
-     let fileMain = document.getElementById('fileMain');
-     fileMain.click();
+  openImageExplorer(event): void {
+     let dialog = document.createElement('input');
+     dialog.setAttribute('type', 'file');
+
+     dialog.addEventListener('change', ()=>{
+         let files = dialog.files[0];
+
+         this.file.post(files).subscribe((res) => {
+
+             let content = this.form.get('content').value + '<img src="' +res.data.url +'"/>';
+
+             this.form.patchValue({ content: content });
+         });
+     });
+
+     dialog.click();
   }
 
   goBack() {
